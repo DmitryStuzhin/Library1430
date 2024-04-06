@@ -5,17 +5,15 @@ import org.springframework.web.bind.annotation.*;
 import ru.testRestApi.project.RESTApiLIbraryProject.models.Book;
 import ru.testRestApi.project.RESTApiLIbraryProject.services.BooksService;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
-import java.util.Queue;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("/books")
 public class BooksController {
-    private int booksId;
     private final BooksService booksService;
-
 
     @Autowired
     public BooksController(BooksService booksService) {
@@ -32,11 +30,6 @@ public class BooksController {
     }
     @GetMapping("/{id}")
     public Book findOneBookForId(@PathVariable("id") int id){
-         booksId = id;
         return booksService.findOne(id);
-    }
-    @GetMapping("/show")
-    public Book showBook(){
-        return booksService.findOne(booksId);
     }
 }
