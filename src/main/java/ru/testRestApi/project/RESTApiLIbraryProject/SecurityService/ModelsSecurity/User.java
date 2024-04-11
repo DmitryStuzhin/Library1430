@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.testRestApi.project.RESTApiLIbraryProject.SecurityService.ModelsSecurity.Role;
+import ru.testRestApi.project.RESTApiLIbraryProject.models.Orders;
 
 import java.util.Collection;
 
@@ -31,4 +32,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id" )
     )
     private Collection<Role> roles;
+    @ManyToMany
+    private Collection<Orders> orders;
 }

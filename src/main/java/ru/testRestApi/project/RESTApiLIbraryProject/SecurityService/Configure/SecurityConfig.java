@@ -1,5 +1,6 @@
 package ru.testRestApi.project.RESTApiLIbraryProject.SecurityService.Configure;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -24,6 +25,7 @@ public class SecurityConfig {
     private final ServiceUser userService;
     private final JwtRequestFilter jwtRequestFilter;
 
+    @Autowired
     public SecurityConfig(@Lazy  ServiceUser userService, JwtRequestFilter jwtRequestFilter) {
         this.userService = userService;
         this.jwtRequestFilter = jwtRequestFilter;

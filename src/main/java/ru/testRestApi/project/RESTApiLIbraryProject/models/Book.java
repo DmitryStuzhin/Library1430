@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.IdGeneratorType;
 
+import java.util.Collection;
+
 @Entity
 @Table(name = "book")
 @AllArgsConstructor
@@ -28,4 +30,6 @@ public class Book {
     private String genre;
     @Column(name = "quantity")
     private int quantity;
+    @ManyToMany
+    private Collection<Orders> orders;
 }
