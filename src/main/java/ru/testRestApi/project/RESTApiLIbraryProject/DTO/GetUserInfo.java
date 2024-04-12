@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import ru.testRestApi.project.RESTApiLIbraryProject.SecurityService.ModelsSecurity.Role;
 import ru.testRestApi.project.RESTApiLIbraryProject.models.Book;
-import ru.testRestApi.project.RESTApiLIbraryProject.models.Orders;
 
 import java.util.Collection;
 
@@ -15,5 +14,6 @@ public class GetUserInfo {
     private String username;
     private String password;
     private String class_number;
-    private Orders order;
+    private Book book;
+    private int order_number;
 }

@@ -26,7 +26,7 @@ public class SecurityConfig {
     private final JwtRequestFilter jwtRequestFilter;
 
     @Autowired
-    public SecurityConfig(@Lazy  ServiceUser userService, JwtRequestFilter jwtRequestFilter) {
+    public SecurityConfig(@Lazy ServiceUser userService, JwtRequestFilter jwtRequestFilter) {
         this.userService = userService;
         this.jwtRequestFilter = jwtRequestFilter;
     }

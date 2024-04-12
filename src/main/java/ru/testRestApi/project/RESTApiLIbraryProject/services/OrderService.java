@@ -1,26 +1,17 @@
 package ru.testRestApi.project.RESTApiLIbraryProject.services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.testRestApi.project.RESTApiLIbraryProject.SecurityService.ModelsSecurity.User;
-import ru.testRestApi.project.RESTApiLIbraryProject.models.Book;
-import ru.testRestApi.project.RESTApiLIbraryProject.models.Orders;
-import ru.testRestApi.project.RESTApiLIbraryProject.repositoryes.OrdersRepository;
-
-import java.util.Optional;
+import ru.testRestApi.project.RESTApiLIbraryProject.models.Order;
+import ru.testRestApi.project.RESTApiLIbraryProject.repositoryes.OrderRepository;
 
 @Service
-public class
-OrderService {
-    private  final OrdersRepository ordersRepository;
-
+public class OrderService {
+    private final OrderRepository orderRepository;
     @Autowired
-    public OrderService(OrdersRepository ordersRepository) {
-        this.ordersRepository = ordersRepository;
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
     }
-    public void save(Orders orders){ ordersRepository.save(orders); }
-
-    public Orders findByUserId(int user_id){
-        return ordersRepository.findByUser_id(user_id).orElse(null) ;
-    }
+    public void save(Order order) { orderRepository.save(order); }
 }

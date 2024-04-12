@@ -5,17 +5,17 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.testRestApi.project.RESTApiLIbraryProject.SecurityService.SecurityRep.UserRepository;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import ru.testRestApi.project.RESTApiLIbraryProject.SecurityService.ModelsSecurity.User;
 import ru.testRestApi.project.RESTApiLIbraryProject.SecurityService.DTO.RegistrationUserDto;
-import ru.testRestApi.project.RESTApiLIbraryProject.SecurityService.Configure.SecurityConfig.*;
+import ru.testRestApi.project.RESTApiLIbraryProject.models.Book;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +27,8 @@ public class ServiceUser implements UserDetailsService {
     public Optional<User> findUserByUsername(String username){
         return userRepository.findUserByUsername(username);
     }
+    public Book findBookByUser_Id(int id) { return userRepository.findBookByUser_Id(id); }
+    public Optional<User> findUserById(int id) { return  userRepository.findById(id); }
 
     @Override
     @Transactional
