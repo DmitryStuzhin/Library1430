@@ -15,5 +15,5 @@ public class GetUserInfo {
     private String password;
     private String class_number;
     private Book book;
-    private int order_number;
+    private Integer order_number;
 }

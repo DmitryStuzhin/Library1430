@@ -26,9 +26,12 @@ public class Order {
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "book_id")
     private Book book;
+    @Column(name = "order_number",  nullable = false)
+    private Integer order_number;
 
-    public Order(User user, Book book) {
+    public Order(User user, Book book, Integer order_number) {
         this.user = user;
         this.book = book;
+        this.order_number = order_number;
     }
 }
