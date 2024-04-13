@@ -52,16 +52,17 @@ public class BooksController {
 
     @PostMapping("/createOrder")
     public ResponseEntity<?> createOrder(@RequestBody CreateOrder book_id){
-        User user = null;
+        Order order = null;
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
         if(authentication != null  && authentication.getName() != null) {
-            user = userService.findUserByUsername(authentication.getName()).orElse(null);
+            User user = userService.findUserByUsername(authentication.getName()).orElse(null);
             if(user.getBooks().isEmpty()){
-               orderService.save( new Order(user, booksService.findOne(book_id.getBook_id())));
+                order =  new Order(user, booksService.findOne(book_id.getBook_id()));
+                orderService.save(order);
             }else ResponseEntity.ok("У вас уже есть книга");
         }
-        return ResponseEntity.ok(user.getBooks().get(0).getTitle());
+        return ResponseEntity.ok(order);
     }
 
     @GetMapping("/getUserInfo")
