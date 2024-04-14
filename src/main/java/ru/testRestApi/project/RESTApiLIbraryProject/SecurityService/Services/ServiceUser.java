@@ -73,21 +73,30 @@ public class ServiceUser implements UserDetailsService {
                     () -> new UsernameNotFoundException("User not found")
             );
             Book userBook = user
-                    .getBooks()
+                    .getBooksFromOrder()
                     .stream()
                     .findFirst()
                     .orElse(null);
             Order order = orderService.findOrderByUser_Id(user.getId()).orElse(null);
-            return ResponseEntity.ok(new GetUserInfo(
-                    user.getId(),
-                    user.getUsername(),
-                    user.getPassword(),
-                    user.getClass_number(),
-                    userBook,
-                    order.getOrder_number()
-            ));
+            if (order == null) {
+                return ResponseEntity.ok(new GetUserInfo(
+                        user.getId(),
+                        user.getUsername(),
+                        user.getPassword(),
+                        user.getClass_number(),
+                        userBook
+                ));
+            }else {
+                return ResponseEntity.ok(new GetUserInfo(
+                        user.getId(),
+                        user.getUsername(),
+                        user.getPassword(),
+                        user.getClass_number(),
+                        userBook,
+                        order.getOrders_number()
+                ));
+            }
         }
-        else return null;
+        else return ResponseEntity.badRequest().body("User not found");
     }
-
 }

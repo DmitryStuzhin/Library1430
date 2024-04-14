@@ -6,12 +6,13 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import ru.testRestApi.project.RESTApiLIbraryProject.SecurityService.ModelsSecurity.User;
 
-@Data
+
 @Entity
-@Table(name = "orders")
+@Table(name = "activeorders")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class ActiveOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -26,12 +27,13 @@ public class Order {
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "book_id")
     private Book book;
-    @Column(name = "order_number",  nullable = false)
-    private Integer orders_number;
 
-    public Order(User user, Book book, Integer order_number) {
+    @Column(name = "order_number", nullable = false)
+    private Integer orderNumber;
+
+    public ActiveOrder(User user, Book book, Integer orderNumber) {
         this.user = user;
         this.book = book;
-        this.orders_number = order_number;
+        this.orderNumber = orderNumber;
     }
 }

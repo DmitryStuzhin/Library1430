@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.testRestApi.project.RESTApiLIbraryProject.SecurityService.ModelsSecurity.Role;
 import ru.testRestApi.project.RESTApiLIbraryProject.models.Book;
 
 import java.util.Collection;
@@ -37,5 +36,18 @@ public class User {
     @JoinTable(name = "orders",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<Book> books;
+    private List<Book> booksFromOrder;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "activeorders",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private List<Book> booksFromActiveOrders;
+
+    public User(int id, String username, String password, String class_number, List<Book> books) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.class_number = class_number;
+        this.booksFromOrder = books;
+    }
 }

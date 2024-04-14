@@ -25,7 +25,9 @@ public class BooksService {
                 booksRepository.findById(id);
         return oneBook.orElse(null);
     }
-//    public Book findBooksByUser_Id(int id){
-//        return booksRepository.findBooksByUser_Id(id).orElse(null);
-//    }
+    public Book findByTitle(String title){
+        return booksRepository.findBookByTitle(title).orElseThrow(
+                () -> new IllegalArgumentException("Book not found")
+        );
+    }
 }
